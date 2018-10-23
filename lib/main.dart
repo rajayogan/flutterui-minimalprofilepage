@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'profile.dart';
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
@@ -21,6 +23,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
   TabController tabController;
+
+  var tripDetails;
 
   @override
   void initState() {
@@ -69,14 +73,22 @@ class _MyHomePageState extends State<MyHomePage>
                 ),
                 SizedBox(width: 5.0),
                 InkWell(
-                  child: Container(
-                    height: 50.0,
-                    width: 50.0,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.0),
-                        image: DecorationImage(
-                            image: AssetImage('assets/chris.jpg'))),
+                  child: Hero(
+                    tag: 'assets/chris.jpg',
+                    child: Container(
+                      height: 50.0,
+                      width: 50.0,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25.0),
+                          image: DecorationImage(
+                              image: AssetImage('assets/chris.jpg'))),
+                    ),
                   ),
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => new ProfilePage()
+                    ));
+                  },
                 )
               ],
             ),
@@ -164,6 +176,7 @@ class _MyHomePageState extends State<MyHomePage>
     return Padding(
       padding: EdgeInsets.only(left: 25.0, right: 25.0, top: 15.0),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -203,7 +216,6 @@ class _MyHomePageState extends State<MyHomePage>
               )
             ],
           ),
-          SizedBox(width: 10.0),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
@@ -249,42 +261,41 @@ class _MyHomePageState extends State<MyHomePage>
           child: Row(
             children: <Widget>[
               Container(
-                height: 225.0,
-                width: MediaQuery.of(context).size.width / 2 + 40.0,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15.0),
-                        bottomLeft: Radius.circular(15.0)),
-                    image: DecorationImage(
-                        image: AssetImage('assets/beach1.jpg'),
-                        fit: BoxFit.cover)),
-              ),
+                  height: 225.0,
+                  width: MediaQuery.of(context).size.width / 2 + 40.0,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(15.0),
+                          bottomLeft: Radius.circular(15.0)),
+                      image: DecorationImage(
+                          image: AssetImage('assets/beach1.jpg'),
+                          fit: BoxFit.cover))),
               SizedBox(width: 2.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Container(
-                    height: 111.5,
-                    width: MediaQuery.of(context).size.width / 2 - 72.0,
-                    decoration: BoxDecoration(
+                      height: 111.5,
+                      width: MediaQuery.of(context).size.width / 2 - 72.0,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(15.0),
                         ),
                         image: DecorationImage(
                             image: AssetImage('assets/beach2.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
+                            fit: BoxFit.cover),
+                      )),
                   SizedBox(height: 2.0),
                   Container(
-                    height: 111.5,
-                    width: MediaQuery.of(context).size.width / 2 - 72.0,
-                    decoration: BoxDecoration(
+                      height: 111.5,
+                      width: MediaQuery.of(context).size.width / 2 - 72.0,
+                      decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(15.0)),
                         image: DecorationImage(
                             image: AssetImage('assets/beach3.jpg'),
-                            fit: BoxFit.cover)),
-                  ),
+                            fit: BoxFit.cover),
+                      )),
                 ],
               )
             ],
